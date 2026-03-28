@@ -66,6 +66,16 @@ class Riverse:
             config=self.config,
         )
 
+    def sleep_all(self) -> dict[str, dict]:
+        """Run sleep() for every user that has unprocessed conversations.
+
+        Returns a dict mapping each user_id to its sleep() summary.
+        """
+        results: dict[str, dict] = {}
+        for user_id in self.storage.get_dirty_user_ids():
+            results[user_id] = self.sleep(user_id)
+        return results
+
     def search(self, query: str, user_id: str = "default", top_k: int = 10) -> list[dict]:
         """Search memory for relevant profile facts, events, and observations."""
         results = []

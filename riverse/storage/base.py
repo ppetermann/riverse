@@ -20,6 +20,11 @@ class StorageBackend(ABC):
         ...
 
     @abstractmethod
+    def get_dirty_user_ids(self) -> list[str]:
+        """Return user_ids that have unprocessed conversations."""
+        ...
+
+    @abstractmethod
     def mark_processed(self, message_ids: list[int]) -> None:
         ...
 

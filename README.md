@@ -114,6 +114,17 @@ Run the full River Algorithm consolidation pipeline:
 
 Returns a summary dict with counts of actions taken.
 
+#### `r.sleep_all()`
+
+Run `sleep()` for every user that has unprocessed conversations since the last call.
+Returns a dict mapping each `user_id` to its `sleep()` summary.
+
+```python
+results = r.sleep_all()
+for user_id, summary in results.items():
+    print(f"{user_id}: {summary}")
+```
+
 #### `r.get_profile(user_id)`
 
 Returns all active profile facts as a list of dicts.
@@ -259,6 +270,16 @@ r = Riverse(
 
 返回操作计数的摘要字典。
 
+#### `r.sleep_all()`
+
+对所有有未处理对话的用户运行 `sleep()`。返回一个将每个 `user_id` 映射到其 `sleep()` 摘要的字典。
+
+```python
+results = r.sleep_all()
+for user_id, summary in results.items():
+    print(f"{user_id}: {summary}")
+```
+
 #### `r.get_profile(user_id)`
 
 返回所有活跃的画像事实列表。
@@ -392,6 +413,16 @@ River Algorithmの完全な統合パイプラインを実行：
 7. 軌跡サマリーを生成
 
 アクション数のサマリー辞書を返します。
+
+#### `r.sleep_all()`
+
+未処理の会話があるすべてのユーザーに対して `sleep()` を実行します。各 `user_id` をその `sleep()` サマリーにマッピングする辞書を返します。
+
+```python
+results = r.sleep_all()
+for user_id, summary in results.items():
+    print(f"{user_id}: {summary}")
+```
 
 #### `r.get_profile(user_id)`
 

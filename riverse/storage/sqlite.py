@@ -76,6 +76,17 @@ class SQLiteStorage(StorageBackend):
         finally:
             conn.close()
 
+    def get_dirty_user_ids(self) -> list[str]:
+        conn = self._conn()
+        try:
+            rows = conn.execute(
+                "SELECT DISTINCT user_id FROM conversations WHERE processed = 0 "
+                "ORDER BY user_id",
+            ).fetchall()
+            return [row["user_id"] for row in rows]
+        finally:
+            conn.close()
+
     def mark_processed(self, message_ids: list[int]) -> None:
         if not message_ids:
             return
